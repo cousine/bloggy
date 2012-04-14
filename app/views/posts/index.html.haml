@@ -1,0 +1,20 @@
+- title "Posts"
+
+= form_tag search_posts_url do
+  = text_field_tag :query
+  = submit_tag "Search"
+
+%br
+%table
+  %tr
+    %th Title
+    %th Body
+  - for post in @posts
+    %tr
+      %td= post.title
+      %td= post.body
+      %td= link_to 'Show', post
+      %td= link_to 'Edit', edit_post_path(post)
+      %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Post", new_post_path
